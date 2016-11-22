@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+
+    <title>IYZICO TODO</title>
+
+    <!-- Core CSS - Include with every page -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+
+    <!-- Page-Level Plugin CSS - Tables -->
+    <link th:href="@{/css/plugins/dataTables/dataTables.bootstrap.css}" rel="stylesheet" />
+
+    <!-- SB Admin CSS - Include with every page -->
+    <link th:href="@{/css/sb-admin.css}" rel="stylesheet"/>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Anne Çocuk Admin Panel</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <div class="navbar-default navbar-static-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-dashboard fa-fw"></i> Admin Dashboard</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/book-info/list}"><i class="fa fa-chevron-right fa-fw"></i> Book Info</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/expert-opinion/list}"><i class="fa fa-chevron-right fa-fw"></i> Expert Opinion</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/pedagogy-info/list}"><i class="fa fa-chevron-right fa-fw"></i> Pedagogy Info</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/events/list}"><i class="fa fa-chevron-right fa-fw"></i> Event</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/videos/list}"><i class="fa fa-chevron-right fa-fw"></i> Videos</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/video-series/list}"><i class="fa fa-chevron-right fa-fw"></i> Video Series</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/banners/list}"><i class="fa fa-chevron-right fa-fw"></i> Banners</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/turkcell-service/list}"><i class="fa fa-chevron-right fa-fw"></i> Turkcell Service Info</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/stories/list}"><i class="fa fa-chevron-right fa-fw"></i> Stories</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/file/choose}"><i class="fa fa-chevron-right fa-fw"></i> File Upload</a>
+                        </li>
+                    </ul>
+                    <!-- /#side-menu -->
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header" style="margin-bottom: 10px">Event</h1>
+                    <a th:href="@{/events/new-event}" class="btn btn-primary" style="float: right; margin: 5px;">New Event</a>
+                </div>
+                <div class="col-lg-12">
+                    <div class="alert alert-success alert-dismissable" style="display: none">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        Task has been successfully deleted.
+                    </div>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+
+                                            <th>Title</th>
+                                            <th>Address</th>
+                                            <th>EventImage</th>
+                                            <th>Details</th>
+                                            <th>Time</th>
+                                            <th>Type</th>
+                                            <th>City</th>
+                                            <th>MinAge</th>
+                                            <th>MaxAge</th>
+                                            <th>Lat</th>
+                                            <th>Lon</th>
+                                            <th>DateForOrder</th>
+                                            <th>&nbsp;</th>
+                                            <th>&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="bl : ${eventlist}">
+
+                                            <td th:text="${bl.title}"></td>
+                                            <td th:text="${bl.address}"></td>
+                                            <td th:text="${bl.eventImage}"></td>
+                                            <td th:text="${bl.details}"></td>
+                                            <td th:text="${bl.time}"></td>
+                                            <td th:text="${bl.type}"></td>
+                                            <td th:text="${bl.city}"></td>
+                                            <td th:text="${bl.minAge}"></td>
+                                            <td th:text="${bl.maxAge}"></td>
+                                            <td th:text="${bl.lat}"></td>
+                                            <td th:text="${bl.lon}"></td>
+                                            <td th:text="${bl.dateForOrder}"></td>
+                                            <td ><a th:href="@{/events/edit-event(eventId=${bl.id})}">Edit</a></td>
+                                            <td><a class="delitem" href="#">Delete</a></td>      <!--th:href="@{/banners/delete(bannerId=${bl.id})}"-->
+                                            <input type="hidden" th:value="${bl.id}"></input>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Core Scripts - Include with every page -->
+    <script th:src="@{/js/jquery-1.10.2.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+    <script th:src="@{/js/sb-admin.js}"></script>
+    <script>
+        //<![CDATA[
+        $(".delitem").click(function() {
+            var $eventId = $(this).parent().next("input").val();
+
+            $.ajax({
+                url: "../events/delete",
+                data:{ eventId: $eventId}
+            }).done(function () {
+                /* alert($bannerId);*/
+                $(".alert").addClass("in").fadeIn(2000);
+                $(".alert").delay(200).addClass("in").fadeOut(4000);
+            });
+        });
+        //]]>
+    </script>
+</body>
+</html>

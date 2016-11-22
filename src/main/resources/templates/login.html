@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <title>Iyzico TODO</title>
+	
+	    <meta charset="utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	    <link rel="stylesheet" th:href="@{/lib/bootstrap/css/bootstrap.min.css}" />
+	    <link rel="stylesheet" th:href="@{/fonts/font-awesome/css/font-awesome.css}" />
+	    <link rel="stylesheet" th:href="@{/css/style.css}" />
+	</head>
+
+	<body>
+	    <section id="login">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-lg-12">
+	                	<div class="row">
+	                    	<div class="col-md-5">
+	                    		<div class="row">
+	                    			<div class="col-lg-12 text-center">
+	                    				<img alt="logo" src="img/logomogo.jpg" height="100px;" />
+					                    <h3 class="column-heading">Enter Your Credentials</h3>
+					                </div>
+	                    		</div>
+			                	<form id="loginForm" role="form" th:action="@{/appLogin}" method="POST">
+			                    	<fieldset>
+			                        	<div class="form-group">
+					                        <span class="t">
+					                        	<img id="loginthumb" src="img/user188.png" alt="Username" width="34" height="34" class="thumbnail" title="Username" />
+					                        </span>
+			                            	<input class="form-control" placeholder="UserName" name="app_username" type="text" autofocus="autofocus" required="required" />
+			                            </div>
+			                            <div class="form-group">
+			                            	<span class="t">
+			                            		<img src="img/lock188.png" alt="Password" width="34" height="34" class="thumbnail" title="Password" />
+			                            	</span>
+			                            	<input class="form-control" placeholder="Password" name="app_password" type="password" value="" required="required" />
+			                            </div>
+			                            <div class="checkbox">
+			                            	<label>
+			                                	<input name="remember" type="checkbox" value="rememberme">Remember Me</input>
+			                                </label>
+			                            </div>
+			                        </fieldset>
+			                        <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
+			                    </form>
+		                    </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </section>
+	    
+	    <script th:src="@{/lib/jquery/js/jquery-2.1.3.min.js}"></script>
+	    <script th:src="@{/lib/bootstrap/js/bootstrap.min.js}"></script>
+	</body>
+</html>
