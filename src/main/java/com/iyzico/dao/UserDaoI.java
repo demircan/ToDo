@@ -1,9 +1,8 @@
 package com.iyzico.dao;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
+
 import com.iyzico.domain.User;
-
-
 
 public interface UserDaoI extends CommonDaoI<User, Long> {
 

@@ -1,25 +1,11 @@
-/* Global Styles */
-
-/* ------------------------------- */
-
 body {
-    padding-top: 100px;
     background-color: #f8f8f8;
     font-size: 13px;
 }
 
-@media(min-width:768px) {
-    body {
-        padding-top: 50px;
-    }
-}
-
-/* Wrappers */
-
-/* ------------------------------- */
-
 #wrapper {
-    width: 100%;
+    width: 1024px;
+    margin: auto;
 }
 
 #page-wrapper {
@@ -27,89 +13,97 @@ body {
     min-height: 568px;
     background-color: #fff;
     display: inline-block;
+    width: 100%;
 }
 
-@media(min-width:768px) {
-    #page-wrapper {
-        position: inherit;
-        margin: 0 0 0 250px;
-        padding: 0 30px;
-        min-height: 1300px;
-        border-left: 1px solid #e7e7e7;
-    }
+.new-task .row,
+.edit-task .row {
+	text-align: center;
 }
 
-/* Navigation */
-
-/* ------------------------------- */
-
-/* Top Right Navigation Dropdown Styles */
-.nav {
-    background-color: #f8f8f8;
+.new-task .col-lg-6,
+.edit-task .col-lg-6 {
+	margin: auto;
+	float: none!important;
 }
 
-.navbar-top-links li {
-    display: inline-block;
+.task .table-responsive th:nth-child(1), 
+.task .table-responsive td:nth-child(1) {
+	width: 200px;
 }
 
-.navbar-top-links li:last-child {
-    margin-right: 15px;
+.task .table-responsive th:nth-child(4), 
+.task .table-responsive td:nth-child(4) {
+	width: 175px;
 }
 
-.navbar-top-links li a {
-    padding: 15px;
-    min-height: 50px;
+.task .table-responsive td:nth-child(5), 
+.task .table-responsive td:nth-child(6),
+.task .table-responsive th:nth-child(5), 
+.task .table-responsive th:nth-child(6) {
+	text-align: center;
+	width: 75px;
 }
 
-.navbar-top-links .dropdown-menu li {
-    display: block;
+.header-container {
+	border-bottom: 1px solid #eee;
+	background-color: white;
+	height: 75px;
+	width: 1024px;
+    margin: auto;
 }
 
-.navbar-top-links .dropdown-menu li:last-child {
-    margin-right: 0;
+.header-container ul {
+	display: table;
+	text-align: center;
+	width: 100%;
+	padding: 0px 50px;
+	margin: 0;
+	height: 73px;
 }
 
-.navbar-top-links .dropdown-menu li a {
-    padding: 3px 20px;
-    min-height: 0;
+.header-container li {
+	display: table-cell;
+	vertical-align: middle;
 }
 
-.navbar-top-links .dropdown-menu li a div {
-    white-space: normal;
+.header-container .logo-column {
+	background-image: url('../img/logomogo.jpg');
+	width: 151px;
 }
 
-.navbar-top-links .dropdown-messages,
-.navbar-top-links .dropdown-tasks,
-.navbar-top-links .dropdown-alerts {
-    width: 310px;
-    min-width: 0;
+.header-container .logo-click {
+	height:70px;
+	width: 151px;
 }
 
-.navbar-top-links .dropdown-messages {
-    margin-left: 5px;
+.header-container h1 {
+	font-size: 50px;
+	font-weight: bold;
+	color: black;
+	margin: 0px;
 }
 
-.navbar-top-links .dropdown-tasks {
-    margin-left: -59px;
+.header-container .user-column {
+	text-align: right;
+	padding: 7px 0px;
+	width: 151px;
+	font-weight: 600;
 }
 
-.navbar-top-links .dropdown-alerts {
-    margin-left: -123px;
+.header-container .user-column span {
+	margin: 0 0 7px;
+	color: rgb(43, 179, 205);
 }
 
-.navbar-top-links .dropdown-user {
-    right: 0;
-    left: auto;
+.btn-primary {
+	background-color: rgb(43, 179, 205);
 }
 
-/* Sidebar Menu Styles */
-
-.navbar-static-side ul li {
-    border-bottom: 1px solid #e7e7e7;
-}
-
-.sidebar-search {
-    padding: 15px;
+#loginForm p {
+	margin: 10px 10px;
+	color: red;
+	font-weight: 500;
 }
 
 .arrow {
@@ -123,52 +117,6 @@ body {
 .active > a > .fa.arrow:before {
     content: "\f107";
 }
-
-.nav-second-level li,
-.nav-third-level li {
-    border-bottom: none !important;
-}
-
-.nav-second-level li a {
-    padding-left: 37px;
-}
-
-.nav-third-level li a {
-    padding-left: 52px;
-}
-
-@media(min-width:768px) {
-    .navbar-static-side {
-        z-index: 1;
-        position: absolute;
-        width: 250px;
-        margin-top: 51px;
-    }
-
-    .navbar-top-links .dropdown-messages,
-    .navbar-top-links .dropdown-tasks,
-    .navbar-top-links .dropdown-alerts {
-        margin-left: auto;
-    }
-}
-
-@media(max-height:600px) and (max-width:767px) {
-    .sidebar-collapse {
-        max-height: 300px;
-        overflow-y: scroll;
-    }
-}
-
-@media(max-height:400px) and (max-width:767px) {
-    .sidebar-collapse {
-        max-height: 200px;
-        overflow-y: scroll;
-    }
-}
-
-/* Buttons */
-
-/* ------------------------------- */
 
 .btn-outline {
     color: inherit;

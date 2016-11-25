@@ -22,31 +22,26 @@ public class TaskAPI implements ITaskAPI {
 
 	@Override
 	public void createTask(Task task) {
-		// TODO Auto-generated method stub
 		taskDao.persist(task);
 	}
 
 	@Override
 	public void updateTask(Task task) {
-		// TODO Auto-generated method stub
 		taskDao.merge(task);
 	}
 
 	@Override
-	public void deleteTask(Task task) {
-		// TODO Auto-generated method stub
-		taskDao.delete(task);
+	public void deleteTaskById(Long taskId) {
+		taskDao.delete(taskDao.findById(taskId));
 	}
 
 	@Override
 	public List<Task> getAllTask() {
-		// TODO Auto-generated method stub
 		return taskDao.findAll();
 	}
 
 	@Override
 	public Task getTask(Long id) {
-		// TODO Auto-generated method stub
 		return taskDao.findById(id);
 	}
 

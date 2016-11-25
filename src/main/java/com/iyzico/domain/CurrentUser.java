@@ -20,8 +20,6 @@ public class CurrentUser extends org.springframework.security.core.userdetails.U
         return user.getId();
     }
 
-    
-
     @Override
     public String toString() {
         return "CurrentUser{" +

@@ -9,11 +9,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.core.userdetails.UserDetailsService;
-
-
+import org.springframework.stereotype.Service;
 
 @Configuration
 @EnableWebSecurity
+@Service
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -21,30 +21,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		//	        http
-		//	            .authorizeRequests()
-		//	                .antMatchers("/**").permitAll()
-		//	                .anyRequest().authenticated()
-		//	                .and()
-		//	            .formLogin()
-		//	                .loginPage("/login")
-		//	                .permitAll()
-		//	                .and()
-		//	            .logout()
-		//	                .permitAll();
-
+		
 		http.authorizeRequests().
-		antMatchers("/loginPage","/css/**","/fonts/**","/font-awesome/**","/js/**","/lib/**","/**/favicon.ico").permitAll().
+		antMatchers("/login-page","/register-page","/create-user","/css/**","/fonts/**","/font-awesome/**","/js/**","/lib/**","/**/favicon.ico").permitAll().
 		anyRequest().authenticated().
 		and().formLogin().  //login configuration
-		loginPage("/loginPage").
+		loginPage("/login-page").
 		loginProcessingUrl("/appLogin").
 		usernameParameter("app_username").
 		passwordParameter("app_password").
-		defaultSuccessUrl("/greeting").	
+		defaultSuccessUrl("/task-list").
 		and().logout().    //logout configuration
 		logoutUrl("/appLogout"). 
-		logoutSuccessUrl("/app/login");
+		logoutSuccessUrl("/login-page");
 	}
 
 	@Autowired

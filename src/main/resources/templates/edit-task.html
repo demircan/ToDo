@@ -1,181 +1,93 @@
 <!DOCTYPE html>
 <html>
-
 <head>
+<meta charset="utf-8"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
 
-    <meta charset="utf-8"></meta>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+<title>IYZICO TODO</title>
 
-    <title>Edit Event - Anne Çocuk Admin Panel</title>
-
-    <!-- Core CSS - Include with every page -->
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
-    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet" />
-
-    <!-- Page-Level Plugin CSS - Tables -->
-    <link th:href="@{/css/plugins/dataTables/dataTables.bootstrap.css}" rel="stylesheet" />
-
-    <!-- SB Admin CSS - Include with every page -->
-    <link th:href="@{/css/sb-admin.css}" rel="stylesheet"/>
-
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/bootstrap-datetimepicker.min.css}" rel="stylesheet" />
+<link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+<link th:href="@{/css/plugins/dataTables/dataTables.bootstrap.css}" rel="stylesheet" />
+<link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 
 <body>
+	<div class="header-container">
+		<ul>
+			<li class="logo-column"></li>
+			<li class="title-column">
+				<h1></h1>
+			</li>
+			<li class="user-column">
+				<form th:action="@{/appLogout}" method="POST">
+					<input type="submit" class="btn btn-primary" value="Logout" />
+				</form>
+			</li>
+		</ul>
+	</div>
+	<div id="wrapper" class="edit-task">
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">Edit Task</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<form role="form" th:action="@{/update-task}" method="POST">
+						<input type="hidden" th:value="${task.id}" name="taskId"></input>
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="form-group">
+									<label>Project</label> 
+									<select class="form-control" name="projectId">
+										<option  th:each="project : ${projectList}"
+											th:value="${project.id}" th:text="${project.title}" th:selected="${task.project.id == project.id}"></option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label>Title</label> <input class="form-control" name="title"
+										th:value="${task.title}"></input>
+								</div>
+								<div class="form-group">
+									<label>Description</label>
+									<textarea class="form-control" rows="3" name="description"
+										th:text="${task.description}"></textarea>
+								</div>
+								<div class="form-group">
+									<label>ToDo Time</label>
+									<div class='input-group date' id='datetimepicker1'>
+										<input type='datetime' class="form-control" name="todoTime"  th:value="${#dates.format(task.todoTime, 'dd/MM/yyyy HH:mm')}"/> <span
+											class="input-group-addon"> <span
+											class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
+								<button type="submit" class="btn btn-success">Save Button</button>
+								<button type="reset" class="btn btn-default">Reset Button</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /#page-wrapper -->
 
-    <div id="wrapper">
+	</div>
+	<!-- /#wrapper -->
 
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Anne Çocuk Admin Panel</a>
-            </div>
-            <!-- /.navbar-header -->
-
-            <div class="navbar-default navbar-static-side" role="navigation">
-                <div class="sidebar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="#"><i class="fa fa-dashboard fa-fw"></i> Admin Dashboard</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/book-info/list}"><i class="fa fa-chevron-right fa-fw"></i> Book Info</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/expert-opinion/list}"><i class="fa fa-chevron-right fa-fw"></i> Expert Opinion</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/pedagogy-info/list}"><i class="fa fa-chevron-right fa-fw"></i> Pedagogy Info</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/events/list}"><i class="fa fa-chevron-right fa-fw"></i> Event</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/videos/list}"><i class="fa fa-chevron-right fa-fw"></i> Videos</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/video-series/list}"><i class="fa fa-chevron-right fa-fw"></i> Video Series</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/banners/list}"><i class="fa fa-chevron-right fa-fw"></i> Banners</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/turkcell-service/list}"><i class="fa fa-chevron-right fa-fw"></i> Turkcell Service Info</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/stories/list}"><i class="fa fa-chevron-right fa-fw"></i> Stories</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/file/choose}"><i class="fa fa-chevron-right fa-fw"></i> File Upload</a>
-                        </li>
-                    </ul>
-                    <!-- /#side-menu -->
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
-
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Edit Event</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <form role="form"  th:action="@{/events/update}" method="POST">
-                        <input type="hidden" th:value="${eventId}" th:name="eventId"></input>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label>Title</label>
-                                            <input class="form-control" name="title" th:value="${title}"></input>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Address</label>
-                                            <textarea class="form-control" rows="3" name="address" th:text="${address}"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>EventImage</label>
-                                            <input class="form-control" name="image" th:value="${eventImage}"></input>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Details</label>
-                                            <textarea class="form-control" rows="3" name="details" th:text="${details}"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Time</label>
-                                            <input class="form-control" name="time" th:value="${time}" required="required"></input>
-                                        </div> 
-                                        <div class="form-group">
-                                            <label>Type</label>
-                                            <input class="form-control" name="type" th:value="${type}"></input>
-                                        </div> 
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
-                                <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label>City</label>
-                                            <input class="form-control" name="city" th:value="${type}"></input>
-                                        </div> 
-                                        <div class="form-group">
-                                            <label>MinAge</label>
-                                            <input class="form-control" name="minAge" th:value="${minAge}" required="required"></input>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>MaxAge</label>
-                                            <input class="form-control" name="maxAge" th:value="${maxAge}" required="required"></input>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Lat</label>
-                                            <input class="form-control" name="lat" th:value="${lat}"></input>
-                                        </div> 
-                                        <div class="form-group">
-                                            <label>Lon</label>
-                                            <input class="form-control" name="lon" th:value="${lon}"></input>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>DateForOrder</label>
-                                            <input class="form-control"  name="dateForOrder" th:value="${dateForOrder}" required="required"></input>
-                                        </div>
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
-                            </div>
-                            <!-- /.row (nested) -->
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <button type="submit" class="btn btn-success">Save Button</button>
-                                    <button type="reset" class="btn btn-default">Reset Button</button>
-                                </div>
-                            </div>
-                        </form>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
-
-    <!-- Core Scripts - Include with every page -->
-    <script th:src="@{/js/jquery-1.10.2.js}"></script>
-    <script th:src="@{/js/bootstrap.min.js}"></script>
-    <script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
-
-    <!-- SB Admin Scripts - Include with every page -->
-    <script th:src="@{/js/sb-admin.js}"></script>
-
-    <!-- Page-Level Demo Scripts - Forms - Use for reference -->
-
+	<script th:src="@{/js/jquery-1.10.2.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/moment-with-locales.js}"></script>
+	<script th:src="@{/js/locales/bootstrap-datepicker.tr.js}"></script>
+	<script th:src="@{/js/bootstrap-datetimepicker.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
 </body>
-
 </html>
