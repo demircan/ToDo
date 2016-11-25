@@ -33,6 +33,11 @@ public class UserController {
 	public String homePage() {
 		return "login";
 	}
+	
+	@RequestMapping(value="/403")
+	public String accessDeniedPage() {
+		return "error";
+	}
 
 	@RequestMapping(value="/register-page")
 	public String registerPage() {

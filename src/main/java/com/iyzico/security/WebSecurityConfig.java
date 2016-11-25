@@ -33,7 +33,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		defaultSuccessUrl("/task-list").
 		and().logout().    //logout configuration
 		logoutUrl("/appLogout"). 
-		logoutSuccessUrl("/login-page");
+		logoutSuccessUrl("/login-page").
+		and().
+		exceptionHandling().accessDeniedPage("/403").
+		and().
+        csrf().disable();
 	}
 
 	@Autowired

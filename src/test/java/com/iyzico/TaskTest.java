@@ -2,7 +2,6 @@ package com.iyzico;
 
 import java.util.Date;
 import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,8 +30,8 @@ public class TaskTest {
 	private Task task;
 	
 	@Before
-	public void initUser() {
-		this.user = userAPI.getUserById(1L);
+	public void initTask() {
+		this.task = taskAPI.getTask(1L);
 	}
 	
 	@Test
@@ -44,11 +43,10 @@ public class TaskTest {
 		task.setUser(user);
 		
 		taskAPI.createTask(task);
-		
 	}
 	
 	@After
-	public void delete() {
+	public void testDeleteTask() {
 		taskAPI.deleteTaskById(task.getId());
 	}
 	

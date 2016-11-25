@@ -1,6 +1,7 @@
 package com.iyzico;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,13 @@ public class UserTest {
 	
 	@Autowired
 	private IUserAPI userAPI;
+	
+	private User user;
+	
+	@Before
+	public void initUser() {
+		this.user = userAPI.getUserById(1L);
+	}
 	
 	@Test
 	public void testCreateUser(){
